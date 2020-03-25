@@ -1,0 +1,3 @@
+rootProject.name='aytar-ktx'
+include ':app'
+include ':aytar'
