@@ -1,10 +1,12 @@
 package com.developersancho.aytar.ktx
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
@@ -71,4 +73,24 @@ fun Activity.runDelayed(delay: Long, timeUnit: TimeUnit = TimeUnit.MILLISECONDS,
             f.invoke()
         }
     }, timeUnit.toMillis(delay))
+}
+
+fun Activity.recreate(animate: Boolean = true) {
+    if (animate) {
+        val restartIntent = Intent(this, this::class.java)
+
+        val extras = intent.extras
+        if (extras != null) {
+            restartIntent.putExtras(extras)
+        }
+        ActivityCompat.startActivity(
+            this, restartIntent,
+            ActivityOptionsCompat
+                .makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out)
+                .toBundle()
+        )
+        finish()
+    } else {
+        recreate()
+    }
 }

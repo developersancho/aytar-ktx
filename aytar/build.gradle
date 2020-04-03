@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def newVersionName = "0.0.1-alpha.02"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -10,7 +12,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "0.0.1-alpha.01"
+        versionName newVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -36,10 +38,7 @@ android {
 
     viewBinding.enabled = true
 
-    androidExtensions {
-        experimental = true
-    }
-
+    androidExtensions.experimental = true
 
 }
 
@@ -54,4 +53,6 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01'
 }
